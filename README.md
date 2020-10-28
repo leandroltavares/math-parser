@@ -1,2 +1,2 @@
 # math-parser
-Small project for parsing math expressions
+Small project for parsing and evaluating math expressions
