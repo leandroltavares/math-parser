@@ -1,0 +1,13 @@
+[run]
+source =
+    /src
+omit =
+    tests/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    pass
+    if __name__ == .__main__.:
+    raise NotImplementedError
+    def __repr__

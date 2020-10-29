@@ -1,4 +1,5 @@
 from tokenizer import Tokenizer, Value, Variable, Function, Operator, Constant, OpenParentheses, CloseParentheses
+from errors import UnassignedVariable
 
 
 class Expression:
@@ -9,8 +10,8 @@ class Expression:
         self.rpn = []
 
     def parse(self, expression):
-        self.tokens, variables = self.tokenizer.tokenize(expression)
-        self.variables = dict.fromkeys(variables, float('NaN'))
+        self.tokens, self.variables = self.tokenizer.tokenize(expression)
+        self.reset_variables()
         self.rpn = self._convert_to_rpn()
 
     def _convert_to_rpn(self):
@@ -41,6 +42,7 @@ class Expression:
                 and not isinstance(top, OpenParentheses))
 
     def evaluate(self):
+        self._ensure_variables_assigned()
         stack = []
         for token in self.rpn:
             if isinstance(token, (Operator, Function)):
@@ -54,14 +56,13 @@ class Expression:
         return stack[0]
 
     def _ensure_variables_assigned(self):
-        pass
+        unassigned_variables = [k for k, v in self.variables.items() if not v]
+        if unassigned_variables:
+            raise UnassignedVariable(str(unassigned_variables))
 
     def assign_value(self, variable, value):
         self.variables[variable] = value
 
-    def clear_variables(self):
-        self.variables.clear()
-
-
-
+    def reset_variables(self):
+        self.variables = dict.fromkeys(self.variables, None)
 

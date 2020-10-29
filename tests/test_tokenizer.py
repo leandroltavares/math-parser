@@ -1,6 +1,6 @@
 import unittest
-from errors import UnmatchingOpenParentheses, UnmatchingCloseParentheses, UnexpectedCharacter
-from tokenizer import Tokenizer, Value, Operator, Constant, Variable, Function, OpenParentheses, CloseParentheses
+from src.errors import UnmatchingOpenParentheses, UnmatchingCloseParentheses, UnexpectedCharacter
+from src.tokenizer import Tokenizer, Value, Operator, Constant, Variable, Function, OpenParentheses, CloseParentheses
 
 
 class TokenizerTest(unittest.TestCase):

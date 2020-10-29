@@ -3,15 +3,19 @@ import operator
 
 NUMBERS = '0123456789.'
 SPACE = ' '
+HYPHEN = '-'
+MINUS_SIGN = u"\u2212"
 OPEN_PARENTHESES = '('
 CLOSE_PARENTHESES = ')'
-CONSTANTS = {'pi': math.pi, 'e': math.e, 'phi': 1.6180339887}
+CONSTANTS = {'pi': math.pi, 'e': math.e, 'phi': 1.618033988749894}
 
 FUNCTIONS = {'sqrt': (math.sqrt, 1),
              'cbrt': (lambda v: v ** (1. / 3), 1),
              'sin': (math.sin, 1),
              'cos': (math.cos, 1),
-             'tan': (math.tan, 1)}
+             'tan': (math.tan, 1),
+             'radians': (math.radians, 1),
+             'degrees': (math.degrees, 1)}
 
 OPERATORS = {'+': (operator.add, 2, 'left', 2),
              '-': (operator.sub, 2, 'left', 2),

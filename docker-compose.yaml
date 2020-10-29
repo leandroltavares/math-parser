@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    entrypoint: sh -c "coverage run -m unittest && coverage report -m"
+
+  lint:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: "pylint ./src ./tests --rcfile .pylintrc"

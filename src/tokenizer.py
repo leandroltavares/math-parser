@@ -1,11 +1,12 @@
-from tokens import OPEN_PARENTHESES, CLOSE_PARENTHESES, OpenParentheses, CloseParentheses, NUMBERS, FUNCTIONS, \
-    CONSTANTS, OPERATORS, Constant, Value, Variable, Operator, Function
-from errors import UnmatchingOpenParentheses, UnmatchingCloseParentheses, UnexpectedCharacter
+from src.tokens import OPEN_PARENTHESES, CLOSE_PARENTHESES, HYPHEN, MINUS_SIGN, NUMBERS, FUNCTIONS, \
+    CONSTANTS, OPERATORS, Constant, Value, Variable, Operator, Function, OpenParentheses, CloseParentheses
+from src.errors import UnmatchingOpenParentheses, UnmatchingCloseParentheses, UnexpectedCharacter
 import re
 
 
 class Tokenizer:
     def tokenize(self, expression):
+        expression = self._sanitize_expression(expression)
         expression = self.expand_implicit_expression(expression)
         tokens = []
         variables = set()
@@ -27,6 +28,10 @@ class Tokenizer:
             self._evaluate_matching_parentheses(parentheses_level, position, len(expression))
         self._generate_new_token(tokens, current_char_sequence, variables)
         return tokens, variables
+
+    @staticmethod
+    def _sanitize_expression(expression):
+        return expression.replace(MINUS_SIGN, HYPHEN)
 
     @staticmethod
     def expand_implicit_expression(expression):
@@ -72,7 +77,7 @@ class Tokenizer:
 
     @staticmethod
     def _generate_operator(op, tokens):
-        if op == "-" and (not tokens or isinstance(tokens[-1], Operator)):
+        if op == HYPHEN and (not tokens or isinstance(tokens[-1], Operator)):
             op = '-u'
         return Operator(op)
 
