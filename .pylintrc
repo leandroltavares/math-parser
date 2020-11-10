@@ -1,0 +1,38 @@
+[MESSAGES CONTROL]
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time.
+#enable=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once).
+
+# C0111 Missing docstring
+# R0903 class has too-few-public-methods
+# c0103 = invalid constant name, requires variables defined outside of a class must be upper cased
+# W0702: No exception type(s) specified (bare-except)
+# W0703: Catching too general exception Exception (broad-except)
+# W0212: Access to a protected member
+# R0904: Too many public methods
+disable=c0111,c0103,R0903,W0702,W0703,W0212,R0904
+
+[SIMILARITIES]
+
+# Minimum lines number of a similarity.
+min-similarity-lines=7
+
+# Ignore comments when computing similarities.
+ignore-comments=yes
+
+# Ignore docstrings when computing similarities.
+ignore-docstrings=yes
+
+# Ignore imports when computing similarities.
+ignore-imports=no
+
+[FORMAT]
+
+max-line-length=120

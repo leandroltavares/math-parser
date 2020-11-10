@@ -3,13 +3,8 @@ from errors import UnassignedVariable
 
 
 class Expression:
-    def __init__(self):
+    def __init__(self, expression):
         self.tokenizer = Tokenizer()
-        self.tokens = []
-        self.variables = {}
-        self.rpn = []
-
-    def parse(self, expression):
         self.tokens, self.variables = self.tokenizer.tokenize(expression)
         self.reset_variables()
         self.rpn = self._convert_to_rpn()
@@ -65,4 +60,3 @@ class Expression:
 
     def reset_variables(self):
         self.variables = dict.fromkeys(self.variables, None)
-

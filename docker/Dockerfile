@@ -9,5 +9,6 @@ RUN pip install pipenv && \
 
 COPY ./src /src
 COPY ./tests /tests
+COPY .pylintrc .
 
 ENV PYTHONPATH=/src

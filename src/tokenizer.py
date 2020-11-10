@@ -1,7 +1,7 @@
+import re
 from src.tokens import OPEN_PARENTHESES, CLOSE_PARENTHESES, HYPHEN, MINUS_SIGN, NUMBERS, FUNCTIONS, \
     CONSTANTS, OPERATORS, Constant, Value, Variable, Operator, Function, OpenParentheses, CloseParentheses
 from src.errors import UnmatchingOpenParentheses, UnmatchingCloseParentheses, UnexpectedCharacter
-import re
 
 
 class Tokenizer:
@@ -80,4 +80,3 @@ class Tokenizer:
         if op == HYPHEN and (not tokens or isinstance(tokens[-1], Operator)):
             op = '-u'
         return Operator(op)
-

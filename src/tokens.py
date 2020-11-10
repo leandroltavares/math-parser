@@ -68,14 +68,13 @@ class Function(Token):
 
 
 class Variable(Token):
-    def __init__(self, symbol):
-        super().__init__(symbol)
+    pass
 
 
 class Constant(Token, Value):
     def __init__(self, symbol):
         Token.__init__(self, symbol)
-        Value.__init__(self,CONSTANTS[symbol])
+        Value.__init__(self, CONSTANTS[symbol])
 
 
 class OpenParentheses(Token):
